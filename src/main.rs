@@ -38,6 +38,17 @@ fn main() {
             val1 => 1,
         },
     });
+
+    // This works
+    test(
+        serde_json::to_value(&B {
+            val2: 2,
+            flattened: minijinja::context! {
+                val1 => 1,
+            },
+        })
+        .unwrap(),
+    );
 }
 
 fn test(ctx: impl serde::Serialize) {
